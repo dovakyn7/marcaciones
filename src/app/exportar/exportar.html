@@ -1,0 +1,124 @@
+<body>
+
+
+  <div class="reporte-wrapper">
+
+    <!-- ── ENCABEZADO ── -->
+    <div class="brand-line">
+      <div class="brand-dot"></div>
+      <span class="brand-text">sys.marcaciones</span>
+      <div class="brand-line-right"></div>
+    </div>
+
+    <!-- ── FILTROS ── -->
+    <div class="filtros-card">
+      <div class="filtros-row">
+
+        <div class="campo-grupo">
+          <label class="campo-label">Cédula del empleado</label>
+          <input class="campo-input" type="text" [(ngModel)]="cedula" placeholder="Ej: 1234567890"
+            (keyup.enter)="buscar()" />
+        </div>
+
+        <div class="campo-grupo">
+          <label class="campo-label">Rango de fechas</label>
+          <select class="campo-select" [(ngModel)]="rango">
+            <option *ngFor="let op of opciones" [value]="op.valor">{{ op.label }}</option>
+          </select>
+        </div>
+
+        <ng-container *ngIf="esPersonalizado">
+          <div class="campo-grupo">
+            <label class="campo-label">Desde</label>
+            <input class="campo-input" type="date" [(ngModel)]="fechaDesde" />
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Hasta</label>
+            <input class="campo-input" type="date" [(ngModel)]="fechaHasta" />
+          </div>
+        </ng-container>
+
+      </div>
+
+      <div class="filtros-acciones">
+        <button class="btn btn-primary" (click)="buscar()" [disabled]="cargando">
+          <span *ngIf="!cargando">🔍 Buscar</span>
+          <span *ngIf="cargando">⏳ Buscando...</span>
+        </button>
+        <button class="btn btn-ghost" (click)="limpiar()" *ngIf="buscado">
+          ✕ Limpiar
+        </button>
+      </div>
+
+      <div class="alerta-error" *ngIf="error">
+        ⚠️ {{ error }}
+      </div>
+    </div>
+
+    <!-- ── PANEL DE RESULTADOS ── -->
+    <div class="resultados-panel" *ngIf="buscado">
+
+      <!-- Info del empleado -->
+      <div class="empleado-header">
+        <div class="empleado-info">
+          <div class="empleado-avatar">{{ nombreEmpleado.charAt(0) }}</div>
+          <div>
+            <p class="empleado-nombre">{{ nombreEmpleado }}</p>
+            <p class="empleado-cedula">CC {{ cedula }}</p>
+          </div>
+        </div>
+        <div class="resumen-chips">
+          <div class="chip">
+            <span class="chip-label">Días con registro</span>
+            <span class="chip-valor">{{ diasConRegistro }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla -->
+      <div class="tabla-wrapper" *ngIf="filas.length > 0; else sinDatos">
+        <table class="tabla-reporte">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Entrada</th>
+              <th>Salida</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fila of filas" [class.fila-incompleta]="fila.entrada === '—' || fila.salida === '—'">
+              <td class="td-fecha">{{ fila.fecha }}</td>
+              <td>
+                <span class="badge badge-entrada" *ngIf="fila.entrada !== '—'">{{ fila.entrada }}</span>
+                <span class="badge badge-vacio" *ngIf="fila.entrada === '—'">—</span>
+              </td>
+              <td>
+                <span class="badge badge-salida" *ngIf="fila.salida !== '—'">{{ fila.salida }}</span>
+                <span class="badge badge-vacio" *ngIf="fila.salida === '—'">—</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #sinDatos>
+        <div class="sin-datos">
+          📭 No hay registros en el período seleccionado.
+        </div>
+      </ng-template>
+
+
+      <div class="export-bar">
+        <button class="btn btn-export" (click)="exportarExcel()">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          Exportar a Excel
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</body>

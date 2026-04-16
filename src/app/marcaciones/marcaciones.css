@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Layout ── */
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: #111118;
+  
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ── Tarjeta principal ── */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  background: #0a0a0f;
+  border: 1px solid #1e1e2e;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #5b4dff55, #00e5ff44, transparent);
+}
+
+form::after {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, #5b4dff08, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Brand line ── */
+.brand-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5b4dff;
+  box-shadow: 0 0 8px #5b4dff99;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #5b4dff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand-line-right {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, #1e1e2e, transparent);
+}
+
+/* ── Títulos ── */
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0ff;
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #3a3a5a;
+  margin: 0 0 1.75rem;
+  font-weight: 400;
+}
+
+/* ── Contenedor campos ── */
+.c3 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* ── Inputs ── */
+.inputsbox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #bebed4;
+  text-transform: uppercase;
+}
+
+.inputsbox input {
+  width: 100%;
+  background: #0d0d14;
+  border: 1px solid #1e1e2e;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #e0e0f0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputsbox input::placeholder {
+  color: #2a2a3a;
+}
+
+.inputsbox input:focus {
+  border-color: #5b4dff44;
+  box-shadow: 0 0 0 3px #5b4dff11;
+}
+
+/* ── Botones entrada / salida ── */
+.botones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.button-28 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid #1e1e2e;
+  background: #0d0d14;
+  color: #3a3a5a;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button-28:hover {
+  border-color: #2e2e4e;
+  color: #6a6a9a;
+}
+
+.btn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+  flex-shrink: 0;
+  transition: opacity 0.15s, box-shadow 0.15s;
+}
+
+/* Entrada activa — cian */
+.button-28.active-entrada {
+  border-color: #00e5ff33;
+  background: #00e5ff0a;
+  color: #00e5ff;
+}
+
+.button-28.active-entrada .btn-dot {
+  opacity: 1;
+  box-shadow: 0 0 6px #00e5ff;
+}
+
+/* Salida activa — rosa */
+.button-28.active-salida {
+  border-color: #ff6b9d33;
+  background: #ff6b9d0a;
+  color: #ff6b9d;
+}
+
+.button-28.active-salida .btn-dot {
+  opacity: 1;
+  box-shadow: 0 0 6px #ff6b9d;
+}
+
+/* ── Botón enviar ── */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #5b4dff;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #6e62ff;
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Barra de estado ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #1a1a28;
+}
+
+.status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow: 0 0 6px #00e5ff;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.status-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #2e2e4a;
+  letter-spacing: 0.08em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .body {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  form {
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .botones {
+    grid-template-columns: 1fr;
+  }
+}

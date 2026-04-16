@@ -1,0 +1,50 @@
+<div class="body">
+  <form [formGroup]="form" (ngSubmit)="enviar()">
+
+    <div class="brand-line">
+      <div class="brand-dot"></div>
+      <span class="brand-text">sys.marcaciones</span>
+      <div class="brand-line-right"></div>
+    </div>
+
+    <h1>Registro</h1>
+    <p class="subtitle">Ingresa tus datos y selecciona el tipo de marcación</p>
+
+    <div class="c3">
+
+      <div class="inputsbox">
+        <span class="field-label">Nombre completo</span>
+        <input type="text" required="required" formControlName="nombre" placeholder="Tu nombre" />
+      </div>
+
+      <div class="inputsbox">
+        <span class="field-label">Cédula</span>
+        <input type="text" required="required" formControlName="cedula" placeholder="0000000000" />
+      </div>
+
+      <div class="botones">
+        <button class="button-28 btn-entrada" type="button"
+          (click)="form.patchValue({ tipo_evento: 'entrada' })"
+          [class.active-entrada]="form.value.tipo_evento === 'entrada'">
+          <span class="btn-dot"></span> Entrada
+        </button>
+        <button class="button-28 btn-salida" type="button"
+          (click)="form.patchValue({ tipo_evento: 'salida' })"
+          [class.active-salida]="form.value.tipo_evento === 'salida'">
+          <span class="btn-dot"></span> Salida
+        </button>
+      </div>
+
+      <button class="submit-btn" type="submit" [disabled]="loading">
+        {{ loading ? 'Registrando...' : 'Registrar marcación' }}
+      </button>
+
+    </div>
+
+    <div class="status-bar">
+      <div class="status-indicator"></div>
+      <span class="status-text">sistema en línea</span>
+    </div>
+
+  </form>
+</div>
