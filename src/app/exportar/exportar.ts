@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { SupabaseService, FilaReporte } from '../services/services';
 import * as XLSX from 'xlsx';
@@ -9,7 +9,7 @@ type Rango = 'hoy' | 'ayer' | 'semana' | 'quincena' | 'mes' | 'personalizado';
 @Component({
   selector: 'app-reporte',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './exportar.html',
   styleUrls: ['./exportar.css'],
 })

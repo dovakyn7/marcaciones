@@ -1,13 +1,13 @@
 
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupabaseService } from '../services/services';
 
 @Component({
   selector: 'app-marcaciones',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './marcaciones.html',
   styleUrl: './marcaciones.css',
 })
