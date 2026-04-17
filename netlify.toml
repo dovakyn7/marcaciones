@@ -2,3 +2,8 @@
   [build]
   command = "echo 'skip'"
   publish = "dist/marcaciones-app/browser"
+
+  [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
